@@ -17,7 +17,6 @@ class RoutesController < ApplicationController
   end
 
   def preview
-
   end
 
   def show
