@@ -6,9 +6,18 @@ class RoutesController < ApplicationController
   def create
     @route = current_user.routes.new(route_params)
 
+    track = CreateTrack.new
+    @route.route_points.each do |point|
+      track.add_point(point.longitude, point.latitude)
+    end
+    @route.json_response = track.call_service
     @route.save
 
     render json: { route_id: @route.id, path: route_path(@route.id) }
+  end
+
+  def preview
+
   end
 
   def show

@@ -11,4 +11,7 @@
 // about supported directives.
 //
 //= require home
+//= require turbolinks
 //= require routes
+//= require example_data
+//= require color_mappings

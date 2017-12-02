@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202170153) do
+ActiveRecord::Schema.define(version: 20171202225408) do
 
   create_table "route_points", force: :cascade do |t|
     t.float "latitude"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20171202170153) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "json_response"
     t.index ["user_id"], name: "index_routes_on_user_id"
   end
 
