@@ -19,11 +19,12 @@
           <%= link_to root_path, class: "nav-link" do %>
             <%= inline_svg "logo.svg", class: 'logo' %>
           <% end %>
-          <div class="pull-right">
-            <%= link_to settings_path, class: "nav-link" do %>
-              <%= fa_icon "cog" %>
-            <% end %>
-          </div>
+          <%= link_to new_route_path, class: "nav-link" do %>
+            <%= fa_icon "plus" %>
+          <% end %>
+          <%= link_to settings_path, class: "nav-link" do %>
+            <%= fa_icon "cog" %>
+          <% end %>
         </nav>
       <% end %>
     <%= yield %>
