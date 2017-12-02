@@ -1,0 +1,21 @@
+.log-in-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100%;
+
+  .row {
+    width: 100%;
+  }
+
+  .logo {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+#new_user {
+  align-self: center;
+  width: 100%;
+}
