@@ -38,8 +38,11 @@ require([
 
   map.on("click", addStop);
 
-  app = (typeof app === 'undefined') ? function () { } : app;
-  app.route = (typeof app.route === 'undefined') ? function () { } : app.route;
+  // app = (typeof app === 'undefined') ? function () { } : app;
+  // app.route = (typeof app.route === 'undefined') ? function () { } : app.route;
+
+  routeResponse = {};
+  requestPoints = [];
 
   routeTask = new RouteTask("https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World");
 
@@ -60,6 +63,7 @@ require([
 
   //Adds a graphic when the user clicks the map. If 2 or more points exist, route is solved.
   function addStop(evt) {
+    requestPoints.push({"latitude": evt.mapPoint.getLatitude(), "longitude": evt.mapPoint.getLongitude()});
     var stop = map.graphics.add(new Graphic(evt.mapPoint, stopSymbol));
     routeParams.stops.features.push(stop);
 
@@ -71,9 +75,7 @@ require([
 
   //Adds the solved route to the map as a graphic
   function showRoute(evt) {
-    app.route.rawResponse = evt;
-    app.route.points = evt.result.routeResults[0].route.geometry.paths;
-
+    routeResponse = evt;
     map.graphics.add(evt.result.routeResults[0].route.setSymbol(routeSymbol));
   }
 
