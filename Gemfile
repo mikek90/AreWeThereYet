@@ -26,6 +26,10 @@ gem "inline_svg"
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem "font-awesome-rails"
 
+gem "jquery-rails"
+
+gem 'rest-client'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -50,6 +54,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'pry'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
