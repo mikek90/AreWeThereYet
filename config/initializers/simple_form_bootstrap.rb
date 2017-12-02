@@ -4,7 +4,7 @@ SimpleForm.setup do |config|
   config.button_class = 'btn btn-default'
   config.boolean_label_class = nil
 
-  config.wrappers :vertical_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :vertical_form, tag: 'div', class: 'form-group has-float-label', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -12,10 +12,9 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'control-label'
-
     b.use :input, class: 'form-control'
-    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+    b.use :label, class: 'control-label'
+    #b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
 

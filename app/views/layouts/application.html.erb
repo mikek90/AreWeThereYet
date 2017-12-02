@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v4.0.2/bootstrap-float-label.min.css"/>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,11 +14,18 @@
 
   <body>
     <div class="container-fluid">
-      <nav class="nav">
-        <% if current_user %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
-        <% end %>
-      </nav>
+      <% if current_user %>
+        <nav class="nav">
+          <%= link_to root_path, class: "nav-link" do %>
+            <%= inline_svg "logo.svg", class: 'logo' %>
+          <% end %>
+          <div class="pull-right">
+            <%= link_to settings_path, class: "nav-link" do %>
+              <%= fa_icon "cog" %>
+            <% end %>
+          </div>
+        </nav>
+      <% end %>
     <%= yield %>
     </div>
   </body>

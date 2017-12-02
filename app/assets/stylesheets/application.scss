@@ -10,16 +10,47 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
 
- @import "bootstrap";
+@import "bootstrap";
+@import "font-awesome";
+@import "devise";
+@import "home";
+@import "nav";
+@import "settings";
 
  html, body {
    height: 100%;
  }
 
- .container-fluid {
+.container-fluid {
   height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+a.active.focus,
+a.active:focus,
+a.focus,
+a:active.focus,
+a:active:focus,
+a:focus,
+button.active.focus,
+button.active:focus,
+button.focus,
+button:active.focus,
+button:active:focus,
+button:focus,
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.form-control:focus,
+.btn:focus {
+    outline: 0 none;
+    outline-color: transparent ;
+    outline-width: 0 ;
+    outline-style: none ;
+    box-shadow: none !important;
 }
