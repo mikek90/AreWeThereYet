@@ -72,8 +72,8 @@ require([
   //Adds the solved route to the map as a graphic
   function showRoute(evt) {
     app.route.rawResponse = evt;
-    app.route.points = routeResponse.result.routeResults[0].route.geometry.paths;
-    
+    app.route.points = evt.result.routeResults[0].route.geometry.paths;
+
     map.graphics.add(evt.result.routeResults[0].route.setSymbol(routeSymbol));
   }
 
