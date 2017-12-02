@@ -31,9 +31,9 @@ require([
   });
 
   map = new Map("map", {
-    basemap : "streets",
-    center : [-117.195, 34.057],
-    zoom : 14
+    basemap : "osm",
+    center : [19.962, 49.297],
+    zoom : 12
   });
 
   map.on("click", addStop);
@@ -49,9 +49,20 @@ require([
   //setup the route parameters
   routeParams = new RouteParameters();
   routeParams.stops = new FeatureSet();
+  routeParams.directionsLengthUnits = "esriKilometers";
   routeParams.outSpatialReference = {
     "wkid" : 4326 //3857 //102100
   };
+  routeParams.travelMode = { "attributeParameterValues": [{ "parameterName": "Restriction Usage", "attributeName": "Walking", "value": "PROHIBITED" }, { "parameterName": "Restriction Usage", "attributeName": "Preferred for Pedestrians", "value": "PREFER_LOW" }, { "parameterName": "Walking Speed (km/h)", "attributeName": "WalkTime", "value": 5 }], "description": "Follows paths and roads that allow pedestrian traffic and finds solutions that optimize travel time. The walking speed is set to 5 kilometers per hour.", "impedanceAttributeName": "WalkTime", "simplificationToleranceUnits": "esriMeters", "uturnAtJunctions": "esriNFSBAllowBacktrack", "restrictionAttributeNames": ["Preferred for Pedestrians", "Walking"], "useHierarchy": false, "simplificationTolerance": 2, "timeAttributeName": "WalkTime", "distanceAttributeName": "Miles", "type": "WALK", "id": "caFAgoThrvUpkFBW", "name": "Walking Time" };
+  // routeParams.travelMode = {
+  //   id: 1,
+  //   name: "Januszek",
+  //   desciption: "xxx"
+
+  // };
+
+  window.routeTask = routeTask;
+  window.routeParams = routeParams;
 
   routeTask.on("solve-complete", showRoute);
   routeTask.on("error", errorHandler);
