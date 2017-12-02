@@ -1,0 +1,7 @@
+<h5>Route <%= @route.name %></h5>
+
+<ul>
+  <% @route.route_points.each do |point| %>
+    <li>Longitude: <%= point.longitude %>, latitude: <%= point.latitude %></li>
+  <% end %>
+</ul>

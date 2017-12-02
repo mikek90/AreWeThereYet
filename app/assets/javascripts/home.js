@@ -82,20 +82,5 @@ require([
       routeTask.solve(routeParams);
       lastStop = routeParams.stops.features.splice(0, 1)[0];
     }
-  }
-
-  //Adds the solved route to the map as a graphic
-  function showRoute(evt) {
-    routeResponse = evt;
-    map.graphics.add(evt.result.routeResults[0].route.setSymbol(routeSymbol));
-  }
-
-  //Displays any error returned by the Route Task
-  function errorHandler(err) {
-    alert("An error occured\n" + err.message + "\n" + err.details.join("\n"));
-
-    routeParams.stops.features.splice(0, 0, lastStop);
-    map.graphics.remove(routeParams.stops.features.splice(1, 1)[0]);
-  }
-
+  });
 });

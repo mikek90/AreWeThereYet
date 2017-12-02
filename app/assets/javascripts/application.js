@@ -11,3 +11,4 @@
 // about supported directives.
 //
 //= require home
+//= require routes
