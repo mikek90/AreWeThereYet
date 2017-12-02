@@ -38,13 +38,16 @@ require([
 
   map.on("click", addStop);
 
+  app = (typeof app === 'undefined') ? function () { } : app;
+  app.route = (typeof app.route === 'undefined') ? function () { } : app.route;
+
   routeTask = new RouteTask("https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World");
 
   //setup the route parameters
   routeParams = new RouteParameters();
   routeParams.stops = new FeatureSet();
   routeParams.outSpatialReference = {
-    "wkid" : 102100
+    "wkid" : 4326 //3857 //102100
   };
 
   routeTask.on("solve-complete", showRoute);
@@ -68,6 +71,9 @@ require([
 
   //Adds the solved route to the map as a graphic
   function showRoute(evt) {
+    app.route.rawResponse = evt;
+    app.route.points = routeResponse.result.routeResults[0].route.geometry.paths;
+    
     map.graphics.add(evt.result.routeResults[0].route.setSymbol(routeSymbol));
   }
 
