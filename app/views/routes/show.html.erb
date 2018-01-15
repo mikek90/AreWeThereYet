@@ -5,3 +5,77 @@
     <li>Longitude: <%= point.longitude %>, latitude: <%= point.latitude %></li>
   <% end %>
 </ul>
+
+<div id="map2" class="map-show"></div>
+
+
+<script>
+  chartData = <%= raw @route.json_response %>;
+  geojson = [{
+    "type": "FeatureCollection",
+    "features": [{
+        "type": "Feature",
+        "geometry": {
+            "type": "LineString",
+            "coordinates": chartData.routes[0].geometry
+        },
+        "properties": {
+            "attributeType": 3
+        }
+      }],
+      "properties": {
+        "Creator": "OpenRouteService.org",
+        "records": 1,
+        "summary": "Steepness"
+    }
+    }];
+
+  $(document).on('ready turbolinks:load', function() {
+    if ($('#map2').length > 0) {
+      var map2 = new L.Map('map2');
+  
+      var url = 'http:{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        attr = 'Map data © <a href="http:openstreetmap.org">OpenStreetMap</a> contributors';
+  
+  
+      var latlngs = []
+  
+      let form = new RouteForm(latlngs)
+      form.listen()
+  
+      map2.on('click', function(e) {
+        latlngs.push({ latitude: e.latlng.lat, longitude: e.latlng.lng });
+        var newMarker = new L.marker(e.latlng).addTo(map2);
+      });
+  
+      var openstreetmap = L.tileLayer(url, {
+        id: 'openstreetmap',
+        attribution: 'Map data © <a href="http:openstreetmap.org">OpenStreetMap</a> contributors'
+      });
+  
+      var bounds = new L.LatLngBounds(new L.LatLng(47.323989,8.108683), new L.LatLng(46.96485, 8.029803 ));
+  
+          var hg = L.control.heightgraph({
+            width: window.outerWidth+50,
+            height: 280,
+            margins: {
+              top: 10,
+              right: 30,
+              bottom: 55,
+              left: 50
+            },
+            position: "bottomright",
+            mappings: colorMappings
+          });
+      
+          hg.addTo(map2);
+
+          hg.addData(geojson);
+          L.geoJson(geojson).addTo(map2);
+  
+      map2.addLayer(openstreetmap).fitBounds(bounds);
+    }
+  });
+  
+
+</script>
